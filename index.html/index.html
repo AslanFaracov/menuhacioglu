@@ -1,0 +1,3349 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500;700&display=swap');
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(to right, #f4f4f9, #eaeaea);
+            margin: 0;
+            padding: 0;
+            color: #333;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .menu-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #ffffffdd;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .img {
+            text-align: center;
+        }
+        .logo{
+            display: block;
+            margin: 0 auto; /* Ortalamak için */
+            max-width: 100%; /* Ekran genişliğine göre uyumlu hale getirmek için */
+            height: auto;
+        }
+
+        .menu-container:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            color: #222;
+            font-size: 3.5rem;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+            animation: fadeInDown 3s ease-in-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category {
+            margin-bottom: 60px;
+        }
+
+        .category h2 {
+            border-bottom: 4px solid #FFD700;
+            padding-bottom: 10px;
+            color: #DA291C;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            padding-left: 10px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .category h2:hover {
+            color: #2980b9;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .item:hover {
+            background-color: #f0f8ff;
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item h3 {
+            margin: 0;
+            color: #222;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.7rem;
+        }
+
+        .item p {
+            margin: 0;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .price {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.5rem;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .price:hover {
+            color: #2ecc71;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .search-bar input {
+            padding: 15px 20px;
+            width: 80%;
+            max-width: 500px;
+            border: 2px solid #DA291C;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-bar input:focus {
+            border-color: #DA291C;
+            outline: none;
+            box-shadow: 0 0 15px #A61B1D;
+        }
+
+        .back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 1rem;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .back-to-top:hover {
+            background-color: #2980b9;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+            }
+
+            .category h2 {
+                font-size: 1.8rem;
+                padding-left: 0;
+            }
+
+            .item h3 {
+                font-size: 1.4rem;
+            }
+
+            .price {
+                font-size: 1.2rem;
+            }
+        }
+
+        .category-list {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .category-list a {
+            margin: 5px 15px;
+            padding: 12px 30px;
+            background-color: #FFD700;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s ease-in-out;
+        }
+
+        .category-list a:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Modal Stilleri */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        
+        <div>
+            <img src="hacioglu11.jpeg" class="logo" >
+        </div>
+            
+        
+    
+        
+
+        
+
+        <div class="category-list">
+            
+            
+            
+            <a href="#breakfast">Səhər Yeməyi</a>
+            <a href="#salats">Salatlar</a>
+            <a href="#eats">Yeməklər</a>
+            <a href="#fishs">Balıqlar</a>
+            <a href="#soup">Şorbalar</a>
+            <a href="#qarnir"> Sadə qarnirlər</a>
+            <a href="#barbecu"> Kabablar</a>
+            <a href="#pizza"> Lahmacun,Pizza</a>
+            <a href="#candy">Şirniyyatlar</a>
+            <a href="#acid">Turşular</a>
+            <a href="#hotdrink"> Isti içəcəklər</a>
+            <a href="#colddirink"> Soyuq içəceklər</a>
+            <a href="#doner">Hacıoğlu Dönər</a>
+            <a href="#Qutab">Qutablar</a>
+            <a href="#corek">Çörəklər</a>
+            
+            
+    
+
+           
+
+
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Yemək axtar...">
+        </div>
+
+
+        <div class="category" id="breakfast">
+            <h2>Səhər Yeməyi</h2>
+            <div class="item" data-item-id="1" onclick="openModal(this)">
+                <div>
+                    <h3>Soyutma Yumurta</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">0.70₼</span>
+            </div>
+            <div class="item" data-item-id="2" onclick="openModal(this)">
+                <div>
+                    <h3>Soyutma Kənd Yumurtası</h3>
+                    <p> Ətraflı bax........</p>
+                </div>
+                <span class="price">0.90₼</span>
+            </div>
+            <div class="item" data-item-id="3" onclick="openModal(this)" >
+                <div>
+                    <h3>Sosiska(soyutma)</h3>
+                    <p>Ətraflı bax.........</p>
+                </div>
+                <span class="price">1.30₼</span>
+            </div>
+            <div class="item" data-item-id="4" onclick="openModal(this)">
+                <div>
+                    <h3>Kənd Şoru</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.50₼</span>
+            </div>
+            <div class="item" data-item-id="5" onclick="openModal(this)">
+                <div>
+                    <h3>Zeytun</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.50₼</span>
+            </div>
+            <div class="item" data-item-id="6" onclick="openModal(this)">
+                <div>
+                    <h3>Qaymaq</h3>
+                    <p> Ətraflı bax........</p>
+                </div>
+                <span class="price">2.50₼</span>
+            </div>
+            <div class="item" data-item-id="7" onclick="openModal(this)">
+                <div>
+                    <h3>Kənd Pendiri</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.50₼</span>
+            </div>
+            <div class="item " data-item-id="8" onclick="openModal(this)">
+                <div>
+                    <h3>Kərə Yağı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.80₼</span>
+            </div>
+            <div class="item" data-item-id="9" onclick="openModal(this)">
+                <div>
+                    <h3>Nehrə Yağı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.00₼</span>
+            </div>
+            <div class="item" data-item-id="10" onclick="openModal(this)">
+                <div>
+                    <h3>Bal</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">4.00₼</span>
+            </div>
+            <div class="item" data-item-id="11" onclick="openModal(this)">
+                <div>
+                    <h3>Qayğanaq(göz)</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.50₼</span>
+            </div>
+            <div class="item" data-item-id="12" onclick="openModal(this)">
+                <div>
+                    <h3>Yağ-Pendir</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.20₼</span>
+            </div>
+            <div class="item" data-item-id="13" onclick="openModal(this)">
+                <div>
+                    <h3>Kolbasa</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.20₼</span>
+            </div>
+            <div class="item" data-item-id="14" onclick="openModal(this)">
+                <div>
+                    <h3>Südlü Aş(sıyıq)</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.50₼</span>
+            </div>
+            <div class="item" data-item-id="15" onclick="openModal(this)">
+                <div>
+                    <h3>Motal pendiri</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.50₼</span>
+            </div>
+            <div class="item" data-item-id="16" onclick="openModal(this)">
+                <div>
+                    <h3>Pomidor-Yumurta</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">4.00₼</span>
+            </div>
+            <div class="item" data-item-id="17" onclick="openModal(this)">
+                <div>
+                    <h3>Sosiska(kolbasa) Yumurta</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">4.00₼</span>
+            </div>
+            <div class="item" data-item-id="18" onclick="openModal(this)">
+                <div>
+                    <h3>Kükü</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.50₼</span>
+            </div>
+            <div class="item" data-item-id="19" onclick="openModal(this)">
+                <div>
+                    <h3>Sucuklu yumurta</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">4.50₼</span>
+            </div>
+        </div>
+    
+        <div class="category" id="salats">
+            <h2>Salatlar</h2>
+            <div class="item" data-item-id="157" onclick="openModal(this)">
+                <div>
+                    <h3>Qatıq </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">1.00₼</span>
+            </div>
+            <div class="item" data-item-id="20" onclick="openModal(this)">
+                <div>
+                    <h3>Süzmə</h3>
+                    <p>Ətraflı bax.........</p>
+                </div>
+                <span class="price">1.50₼</span>
+            </div>
+            <div class="item" data-item-id="21" onclick="openModal(this)">
+                <div>
+                    <h3> Acika</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">1.50₼</span>
+            </div>
+            <div class="item" data-item-id="22" onclick="openModal(this)">
+                <div>
+                    <h3>Göyərti</h3>
+                <p> Ətraflı bax........</p>
+                </div>
+                <span class="price">1.50₼</span>
+            </div>
+            <div class="item" data-item-id="23" onclick="openModal(this)">
+                <div>
+                    <h3>Pomidor-xiyar</h3>
+                <p> Ətraflı bax........</p>
+                </div>
+                <span class="price">2.00₼</span>
+            </div>
+            <div class="item" data-item-id="195" onclick="openModal(this)">
+                <div>
+                    <h3>Xiyar salatı</h3>
+                <p> Ətraflı bax........</p>
+                </div>
+                <span class="price">2.00₼</span>
+            </div>
+            
+            <div class="item" data-item-id="24" onclick="openModal(this)">
+                <div>
+                    <h3>Çoban salatı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.80₼</span>
+            </div>
+            <div class="item" data-item-id="25" onclick="openModal(this)">
+                <div>
+                    <h3>Paytaxt salatı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.00₼</span>
+            </div>
+            <div class="item" data-item-id="26" onclick="openModal(this)">
+                <div>
+                    <h3>Mimoza salatı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.00₼</span>
+            </div>
+            <div class="item" data-item-id="205" onclick="openModal(this)">
+                <div>
+                    <h3>Çuğundur salatı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.00₼</span>
+            </div>
+            <div class="item" data-item-id="196" onclick="openModal(this)">
+                <div>
+                    <h3>Gavalı salatı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.00₼</span>
+            </div>
+            <div class="item" data-item-id="204" onclick="openModal(this)">
+                <div>
+                    <h3>Hacıoğlu salatı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.00₼</span>
+            </div>
+            <div class="item" data-item-id="27" onclick="openModal(this)">
+                <div>
+                    <h3>Vingred salatı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.00₼</span>
+            </div>
+            <div class="item" data-item-id="28" onclick="openModal(this)">
+                <div>
+                    <h3>Mangal salatı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.00₼</span>
+            </div>
+            <div class="item" data-item-id="29" onclick="openModal(this)">
+                <div>
+                    <h3>Şuba salatı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.00₼</span>
+            </div>
+            <div class="item" data-item-id="30" onclick="openModal(this)">
+                <div>
+                    <h3>Lavaş salatı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.00</span>
+            </div>
+            <div class="item" data-item-id="31" onclick="openModal(this)">
+                <div>
+                    <h3>Meyvə (mövsumə görə)</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">xxx₼</span>
+            </div>
+        </div>
+    
+        <div class="category" id="eats">
+            <h2>Yeməklər</h2>
+            <div class="item" data-item-id="200" onclick="openModal(this)">
+                <div>
+                    <h3>Vişneli ət qovurması</h3>
+                    <p>Ətraflı bax.........</p>
+                </div>
+                <span class="price">9.00₼</span>
+            </div>
+            <div class="item" data-item-id="198" onclick="openModal(this)">
+                <div>
+                    <h3>Qaymaqlı dana</h3>
+                    <p>Ətraflı bax.........</p>
+                </div>
+                <span class="price">8.00₼</span>
+            </div>
+            <div class="item" data-item-id="199" onclick="openModal(this)">
+                <div>
+                    <h3>Limonlu toyuq</h3>
+                    <p>Ətraflı bax.........</p>
+                </div>
+                <span class="price">9.00₼</span>
+            </div>
+
+            <div class="item" data-item-id="197" onclick="openModal(this)">
+                <div>
+                    <h3>Toyuq manastr</h3>
+                    <p>Ətraflı bax.........</p>
+                </div>
+                <span class="price">6.50₼</span>
+            </div>
+            <div class="item" data-item-id="32" onclick="openModal(this)">
+                <div>
+                    <h3>Toyuq kotleti ( 1 ədəd)</h3>
+                    <p>Ətraflı bax.........</p>
+                </div>
+                <span class="price">1.90₼</span>
+            </div>
+            <div class="item" data-item-id="33" onclick="openModal(this)">
+                <div>
+                    <h3>Ət kotleti( 1 ədəd)</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.40₼</span>
+            </div>
+            <div class="item" data-item-id="34" onclick="openModal(this)">
+                <div>
+                    <h3>Kievski kotlet ( 1 ədəd)</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">4.50₼</span>
+            </div>
+            <div class="item" data-item-id="35" onclick="openModal(this)">
+                <div>
+                    <h3>Toyuq langet</h3>
+                    <p>Ətraflı bax.........</p>
+                </div>
+                <span class="price">4.00₼</span>
+            </div>
+            <div class="item" data-item-id="36" onclick="openModal(this)">
+                <div>
+                    <h3>Ətli börək</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">4.20₼</span>
+            </div>
+            <div class="item" data-item-id="37" onclick="openModal(this)">
+                <div>
+                    <h3>Xəngəl</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">4.50₼</span>
+            </div>
+            <div class="item" data-item-id="38" onclick="openModal(this)">
+                <div>
+                    <h3>Toyuq yeməkləri (qarnirlə)</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">5.50₼</span>
+            </div>
+            <div class="item" data-item-id="39" onclick="openModal(this)">
+                <div>
+                    <h3>Toyuq qulyaş</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">5.50₼</span>
+            </div>
+            <div class="item" data-item-id="40" onclick="openModal(this)">
+                <div>
+                    <h3>Ət qulyaş</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.00₼</span>
+            </div>
+            <div class="item" data-item-id="41" onclick="openModal(this)">
+                <div>
+                    <h3>Qazan kotleti</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.00₼</span>
+            </div>
+            <div class="item" data-item-id="42" onclick="openModal(this)">
+                <div>
+                    <h3>Toyuq souzu</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">5.50₼</span>
+            </div>
+            <div class="item" data-item-id="43" onclick="openModal(this)">
+                <div>
+                    <h3>Ət souzu / Bozbaş</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.00₼</span>
+            </div>
+            <div class="item" data-item-id="44" onclick="openModal(this)">
+                <div>
+                    <h3>Ət musaqqa</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.00₼</span>
+            </div>
+            <div class="item" data-item-id="45" onclick="openModal(this)">
+                <div>
+                    <h3>Tərəvəz qizartma</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">5.50</span>
+            </div>
+            <div class="item" data-item-id="46" onclick="openModal(this)">
+                <div>
+                    <h3>Dolmalar</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.50₼</span>
+            </div>
+            <div class="item" data-item-id="47" onclick="openModal(this)">
+                <div>
+                    <h3>Kənd cücəsi çığırtması ( pors) </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.00₼</span>
+            </div>
+            <div class="item" data-item-id="48" onclick="openModal(this)">
+                <div>
+                    <h3>Ət yeməkləri ( qarnirlə)</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.50₼</span>
+            </div>
+            <div class="item" data-item-id="49" onclick="openModal(this)">
+                <div>
+                    <h3>Toyuq qovurma </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.50₼</span>
+            </div>
+            <div class="item" data-item-id="50" onclick="openModal(this)">
+                <div>
+                    <h3>Kalafur/Buğlama</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.50₼</span>
+            </div>
+            <div class="item" data-item-id="51" onclick="openModal(this)">
+                <div>
+                    <h3>Piti</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.50₼</span>
+            </div>
+            <div class="item" data-item-id="52" onclick="openModal(this)">
+                <div>
+                    <h3>Julyen</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.50₼</span>
+            </div>
+            <div class="item" data-item-id="189" onclick="openModal(this)">
+                <div>
+                    <h3>Quzu xaşdama</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.50₼</span>
+            </div>
+            <div class="item" data-item-id="53" onclick="openModal(this)">
+                <div>
+                    <h3>Ətli nar qovurma</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.50₼</span>
+            </div>
+            <div class="item" data-item-id="54" onclick="openModal(this)">
+                <div>
+                    <h3>Qaymaqlı toyuq </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.50₼</span>
+            </div>
+            <div class="item" data-item-id="188" onclick="openModal(this)">
+                <div>
+                    <h3>Şirəli dana </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">9.00₼</span>
+            </div>
+            <div class="item" data-item-id="55" onclick="openModal(this)">
+                <div>
+                    <h3>Hasan paşa koftə</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.50₼</span>
+            </div>
+            <div class="item" data-item-id="56" onclick="openModal(this)">
+                <div>
+                    <h3>İzmir köftəsi</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.00₼</span>
+            </div>
+            <div class="item" data-item-id="57" onclick="openModal(this)">
+                <div>
+                    <h3>Şah plov ( pors )</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">7.00₼</span>
+            </div>
+            <div class="item" data-item-id="58" onclick="openModal(this)">
+                <div>
+                    <h3>Quzu təndir ( pors )</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.50₼</span>
+            </div>
+            <div class="item" data-item-id="59" onclick="openModal(this)">
+                <div>
+                    <h3>Kənd cücəsi ( soyutma )</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">15.00₼</span>
+            </div>
+            <div class="item" data-item-id="60" onclick="openModal(this)">
+                <div>
+                    <h3>Kənd cücəsi çığırtması ( bütöv )</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">18.00₼</span>
+            </div>
+            <div class="item" data-item-id="61" onclick="openModal(this)">
+                <div>
+                    <h3>Toyuq ləvangisi</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">20.00₼</span>
+            </div>
+            <div class="item" data-item-id="62" onclick="openModal(this)">
+                <div>
+                    <h3>Toyuq sacı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">20.00₼</span>
+            </div>
+            <div class="item" data-item-id="63" onclick="openModal(this)">
+                <div>
+                    <h3>Baliq ləvəngisi</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">25.00₼</span>
+            </div>
+            <div class="item" data-item-id="64" onclick="openModal(this)">
+                <div>
+                    <h3>Quzu sacı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">27.00₼</span>
+            </div>
+        </div>
+    
+        <div class="category" id="fishs">
+            <h2>Balıqlar</h2>
+            <div class="item" data-item-id="65" onclick="openModal(this)">
+                <div>
+                    <h3>Sazan</h3>
+                    <p></p>
+                </div>
+                <span class="price">xxx</span>
+            </div>
+            <div class="item" data-item-id="66" onclick="openModal(this)">
+                <div>
+                    <h3>Xaşam</h3>
+                    <p></p>
+                </div>
+                <span class="price">xxx</span>
+            </div>
+            <div class="item" data-item-id="67" onclick="openModal(this)">
+                <div>
+                    <h3>Kütüm</h3>
+                    <p></p>
+                </div>
+                <span class="price">xxx</span>
+            </div>
+            <div class="item" data-item-id="201" onclick="openModal(this)">
+                <div>
+                    <h3>Farel</h3>
+                    <p></p>
+                </div>
+                <span class="price">xxx</span>
+            </div>
+           
+            <div class="item" data-item-id="69" onclick="openModal(this)">
+                <div>
+                    <h3>Belamur</h3>
+                    <p></p>
+                </div>
+                <span class="price">xxx</span>
+            </div>
+            <div class="item" data-item-id="70" onclick="openModal(this)">
+                <div>
+                    <h3>Nərə</h3>
+                    <p></p>
+                </div>
+                <span class="price">xxx</span>
+            </div>
+        </div>
+        <div class="category" id="soup">
+            <h2>Şorbalar</h2>
+            <div class="item" data-item-id="71" onclick="openModal(this)">
+                <div>
+                    <h3>Dovğa stəkanda</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">0.80₼</span>
+            </div>
+    
+            
+        <div class="item" data-item-id="72" onclick="openModal(this)">
+            <div>
+                <h3>Dovğa bakalda</h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">1.50₼</span>
+        </div>
+        <div class="item" data-item-id="73" onclick="openModal(this)">
+            <div>
+                <h3>Dovğa kasada</h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">2.80₼</span>
+        </div>
+        <div class="item" data-item-id="74" onclick="openModal(this)">
+            <div>
+                <h3>Mərci</h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">3.00₼</span>
+        </div>
+        <div class="item" data-item-id="75" onclick="openModal(this)">
+            <div>
+                <h3> Yayla supu</h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">3.00₼</span>
+        </div>
+        <div class="item" data-item-id="76" onclick="openModal(this)">
+            <div>
+                <h3>Toyuq supu</h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">3.00₼</span>
+        </div>
+        <div class="item" data-item-id="77" onclick="openModal(this)">
+            <div>
+                <h3>Borş</h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">4.50₼</span>
+        </div>
+        <div class="item" data-item-id="78" onclick="openModal(this)">
+            <div>
+                <h3>Quru fasulyə</h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">4.50₼</span>
+        </div>
+        <div class="item" data-item-id="79" onclick="openModal(this)">
+            <div>
+                <h3>Hinduşka supu</h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">4.50₼</span>
+        </div>
+        <div class="item" data-item-id="80" onclick="openModal(this)">
+            <div>
+                <h3>Düşbərə</h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">4.50₼</span>
+        </div>
+        <div class="item" data-item-id="81" onclick="openModal(this)">
+            <div>
+                <h3>Kənd cücə supu</h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">4.00₼</span>
+        </div>
+        <div class="item" data-item-id="82" onclick="openModal(this)">
+            <div>
+                <h3>Göbələkli şorba </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">4.00₼</span>
+        </div>
+        <div class="category" id="qarnir">
+            <h2>Sadə qarnirlər</h2>
+            <div class="item" data-item-id="83" onclick="openModal(this)">
+                <div>
+                    <h3>Düyü </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.20₼</span>
+            </div>
+            <div class="item" data-item-id="84" onclick="openModal(this)">
+                <div>
+                    <h3>Qreçka </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.20₼</span>
+            </div>
+            <div class="item" data-item-id="85" onclick="openModal(this)">
+                <div>
+                    <h3>Makaron </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.20₼</span>
+            </div>
+            <div class="item" data-item-id="86" onclick="openModal(this)">
+                <div>
+                    <h3>Püre </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.20₼</span>
+            </div>
+            <div class="item" data-item-id="87" onclick="openModal(this)">
+                <div>
+                    <h3>Spagetti </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.20₼</span>
+            </div>
+            <div class="item" data-item-id="88" onclick="openModal(this)">
+                <div>
+                    <h3>Verməşil </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.20₼</span>
+            </div>
+            <div class="item" data-item-id="89" onclick="openModal(this)">
+                <div>
+                    <h3>Bulqur </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.20₼</span>
+            </div>
+            <div class="item" data-item-id="90" onclick="openModal(this)" >
+                <div>
+                    <h3>Fri </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.80₼</span>
+            </div>
+    
+
+
+        </div>
+        <div class="category" id="barbecu">
+            <h2>Kabablar</h2>
+            <div class="item" data-item-id="91" onclick="openModal(this)">
+            <div>
+                <h3>Kartof kababı </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">3.00₼</span>
+        </div>
+        <div class="item" data-item-id="184" onclick="openModal(this)" >
+                <div>
+                    <h3>Tərəvəz kababı </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.00₼</span>
+            </div>
+            <div class="item" data-item-id="92" onclick="openModal(this)">
+                <div>
+                    <h3>Kartof lüləsi </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.50₼</span>
+            </div>
+            <div class="item" data-item-id="93" onclick="openModal(this)">
+                <div>
+                    <h3>Kartof kababı(quyruqla) </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">4.50₼</span>
+            </div>
+            <div class="item" data-item-id="94" onclick="openModal(this)">
+                <div>
+                    <h3>Toyuq kababı</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">5.50₼</span>
+            </div>
+            
+            <div class="item" data-item-id="95" onclick="openModal(this)">
+                <div>
+                    <h3>Ciyər içalat </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">5.50₼</span>
+            </div>
+            <div class="item" data-item-id="96" onclick="openModal(this)">
+                <div>
+                    <h3>Xan kababı </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">5.50₼</span>
+            </div>
+            <div class="item" data-item-id="97" onclick="openModal(this)">
+                <div>
+                    <h3>Lülə </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.50₼</span>
+            </div>
+            <div class="item" data-item-id="98" onclick="openModal(this)">
+                <div>
+                    <h3>Tikə </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">7.50₼</span>
+            </div>
+            <div class="item" data-item-id="99" onclick="openModal(this)">
+                <div>
+                    <h3> Dana basdırması</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">8.00₼</span>
+            </div>
+            <div class="item" data-item-id="100" onclick="openModal(this)">
+                <div>
+                    <h3>Antrikot </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">8.50₼</span>
+            </div>
+            <div class="item" data-item-id="101" onclick="openModal(this)">
+                <div>
+                    <h3>Hinduşka kababı </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">8.50₼</span>
+            </div>
+            
+            <div class="item" data-item-id="103" onclick="openModal(this)">
+                <div>
+                    <h3>Kənd çolpası(setkada) </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">17.00₼</span>
+            </div>
+        </div>
+        <div class="category" id="pizza">
+            <h2>Lahmacun,pizza</h2>
+        
+        <div class="item" data-item-id="104" onclick="openModal(this)">
+            <div>
+                <h3>Sadə lahmacun </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">3.00₼</span>
+        </div>
+        <div class="item" data-item-id="105" onclick="openModal(this)">
+            <div>
+                <h3>Acılı lahmacun </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">3.00₼</span>
+        </div>
+        <div class="item" data-item-id="106" onclick="openModal(this)">
+            <div>
+                <h3>Pendirli lahmacun </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">3.50₼</span>
+        </div>
+        <div class="item" data-item-id="107" onclick="openModal(this)">
+            <div>
+                <h3>Hacıoğlu qarışıq lahmacun </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">4.00₼</span>
+        </div>
+        <div class="item" data-item-id="108" onclick="openModal(this)">
+            <div>
+                <h3>Sadə pizza(böyük)</h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">10.00₼</span>
+        </div>
+        <div class="item" data-item-id="109" onclick="openModal(this)">
+            <div>
+                <h3>Sadə pizza (kiçik) </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">7.00₼</span>
+        </div>
+        <div class="item" data-item-id="110" onclick="openModal(this)">
+            <div>
+                <h3>Toyuqlu pizza (böyük) </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">10.00₼</span>
+        </div>
+        <div class="item" data-item-id="111" onclick="openModal(this)">
+            <div>
+                <h3>Toyuqlu pizza ( kiçik) </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">7.00₼</span>
+        </div>
+        <div class="item" data-item-id="112" onclick="openModal(this)">
+            <div>
+                <h3>Qıymalı Pidə </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">6.50₼</span>
+        </div>
+        <div class="item" data-item-id="113" onclick="openModal(this)">
+            <div>
+                <h3>Quşbaşı pidə </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">7.00₼</span>
+        </div>
+        <div class="item" data-item-id="114" onclick="openModal(this)">
+            <div>
+                <h3>Sosisli pizza(böyük) </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">10.50₼</span>
+        </div>
+        <div class="item" data-item-id="115" onclick="openModal(this)">
+            <div>
+                <h3>Sosisli pizza(kiçik) </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">7.50₼</span>
+        </div>
+        <div class="item" data-item-id="116" onclick="openModal(this)">
+            <div>
+                <h3>Qarışıq pide </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">7.90₼</span>
+        </div>
+        <div class="item" data-item-id="117" onclick="openModal(this)">
+            <div>
+                <h3>Pendirli pide </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">7.00₼</span>
+        </div>
+        <div class="item" data-item-id="118" onclick="openModal(this)">
+            <div>
+                <h3>Ətli pizza(böyük) </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">10.50₼</span>
+        </div>
+        <div class="item" data-item-id="119" onclick="openModal(this)">
+            <div>
+                <h3>Ətli pizza (kiçik) </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">7.50₼</span>
+        </div>
+        <div class="item" data-item-id="120" onclick="openModal(this)">
+            <div>
+                <h3>Hacıoğlu qarışıq pizza </h3>
+                <p>Ətraflı bax........</p>
+            </div>
+            <span class="price">12.00₼</span>
+        </div>
+        <div class="category" id="Qutab">
+            <h2>Qutablar</h2>
+            <div class="item" data-item-id="207" onclick="openModal(this)">
+                <div>
+                    <h3>Ət qutabı </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">1.30₼</span>
+            </div>
+            <div class="item" data-item-id="208" onclick="openModal(this)">
+                <div>
+                    <h3>Qarın qutabı </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">1.20₼</span>
+            </div>
+            <div class="item" data-item-id="209" onclick="openModal(this)">
+                <div>
+                    <h3>Göy qutabı </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">1.10₼</span>
+            </div>
+            <div class="item" data-item-id="210" onclick="openModal(this)">
+                <div>
+                    <h3>Dəvə qutabı </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">1.80₼</span>
+            </div>
+            <div class="item" data-item-id="211" onclick="openModal(this)">
+                <div>
+                    <h3>Bilinçik ətli </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">0.80₼</span>
+            </div>
+            <div class="item" data-item-id="212" onclick="openModal(this)">
+                <div>
+                    <h3>Bilinçik kəsmikli </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">0.50₼</span>
+            </div>
+        <div class="category" id="candy">
+            <h2>Şirniyyatlar</h2>
+            <div class="item" data-item-id="121" onclick="openModal(this)">
+                <div>
+                    <h3>Keks </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">0.70₼</span>
+            </div>
+            <div class="item" data-item-id="122" onclick="openModal(this)">
+                <div>
+                    <h3>Şəkərçörəyi </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">0.70₼</span>
+            </div>
+            <div class="item" data-item-id="123" onclick="openModal(this)">
+                <div>
+                    <h3>Qoğal </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">0.90₼</span>
+            </div>
+            <div class="item" data-item-id="203" onclick="openModal(this)">
+                <div>
+                    <h3>Xaçapuri </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.00₼</span>
+            </div>
+            <div class="item" data-item-id="124" onclick="openModal(this)">
+                <div>
+                    <h3>Bulka </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">0.90₼</span>
+            </div>
+            <div class="item" data-item-id="125" onclick="openModal(this)">
+                <div>
+                    <h3>Turbuçka </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">0.80₼</span>
+            </div>
+            <div class="item" data-item-id="126" onclick="openModal(this)">
+                <div>
+                    <h3>Simit </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">0.80₼</span>
+            </div>
+            <div class="item" data-item-id="127" onclick="openModal(this)">
+                <div>
+                    <h3>Ekler </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">0.90₼</span>
+            </div>
+            <div class="item" data-item-id="128" onclick="openModal(this)">
+                <div>
+                    <h3>Kətə </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">1.20₼</span>
+            </div>
+            <div class="item" data-item-id="129" onclick="openModal(this)">
+                <div>
+                    <h3>Milli paxlava </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">1.20₼</span>
+            </div>
+            <div class="item" data-item-id="202" onclick="openModal(this)">
+                <div>
+                    <h3>Burma paxlava</h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">1.50₼</span>
+            </div>
+            <div class="item" data-item-id="130" onclick="openModal(this)">
+                <div>
+                    <h3>Pirojna cemli </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">1.00₼</span>
+            </div>
+            <div class="item" data-item-id="131" onclick="openModal(this)">
+                <div>
+                    <h3>Pirojna </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">1.70₼</span>
+            </div>
+            <div class="item" data-item-id="185" onclick="openModal(this)">
+                <div>
+                    <h3>Ballı tort  </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.80₼</span>
+            </div>
+            <div class="item" data-item-id="186" onclick="openModal(this)">
+                <div>
+                    <h3>Spartak tortu  </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.80₼</span>
+            </div>
+            <div class="item" data-item-id="187" onclick="openModal(this)">
+                <div>
+                    <h3>Napoleon tortu  </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">2.80₼</span>
+            </div>
+            <div class="item" data-item-id="132" onclick="openModal(this)">
+                <div>
+                    <h3>Sinikers </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.00₼</span>
+            </div>
+            <div class="item" data-item-id="133" onclick="openModal(this)">
+                <div>
+                    <h3>Sütlaç </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">3.00₼</span>
+            </div>
+            <div class="item" data-item-id="134" onclick="openModal(this)">
+                <div>
+                    <h3>Mürəbbə </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">5.00₼</span>
+            </div>
+            <div class="item" data-item-id="135" onclick="openModal(this)">
+                <div>
+                    <h3>Künefə </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">6.00₼</span>
+            </div>
+            <div class="item" data-item-id="136" onclick="openModal(this)">
+                <div>
+                    <h3>Tortlar(1kq) </h3>
+                    <p>Ətraflı bax........</p>
+                </div>
+                <span class="price">15.00₼</span>
+            </div>
+            <div class="category" id="acid">
+                <h2>Turşular</h2>
+                <div class="item" data-item-id="137" onclick="openModal(this)">
+                    <div>
+                        <h3>Kələm </h3>
+                        <p>Ətraflı bax........</p>
+                    </div>
+                    <span class="price">2.00₼</span>
+                </div>
+                <div class="item" data-item-id="138" onclick="openModal(this)">
+                    <div>
+                        <h3>Xiyar </h3>
+                        <p>Ətraflı bax........</p>
+                    </div>
+                    <span class="price">2.00₼</span>
+                </div>
+                <div class="item" data-item-id="139" onclick="openModal(this)">
+                    <div>
+                        <h3>Bibər </h3>
+                        <p>Ətraflı bax........</p>
+                    </div>
+                    <span class="price">2.00₼</span>
+                </div>
+                <div class="item" data-item-id="140" onclick="openModal(this)">
+                    <div>
+                        <h3>Alça </h3>
+                        <p>Ətraflı bax........</p>
+                    </div>
+                    <span class="price">2.00₼</span>
+                </div>
+                <div class="item" data-item-id="141" onclick="openModal(this)">
+                    <div>
+                        <h3>Badımcan </h3>
+                        <p>Ətraflı bax........</p>
+                    </div>
+                    <span class="price">2.00₼</span>
+                </div>
+                <div class="item" data-item-id="142" onclick="openModal(this)">
+                    <div>
+                        <h3>Sarımsaq </h3>
+                        <p>Ətraflı bax........</p>
+                    </div>
+                    <span class="price">2.00₼</span>
+                </div>
+                <div class="item" data-item-id="143" onclick="openModal(this)">
+                    <div>
+                        <h3>Qarışıq turşu </h3>
+                        <p>Ətraflı bax........</p>
+                    </div>
+                    <span class="price">5.00₼</span>
+                </div>
+                <div class="category" id="hotdrink">
+                    <h2>İsti içəcəklər</h2>
+                    <div class="item" data-item-id="144" onclick="openModal(this)">
+                        <div>
+                            <h3>Çay (fincanda) </h3>
+                            <p>Ətraflı bax........</p>
+                        </div>
+                        <span class="price">0.50₼</span>
+                    </div>
+                    <div class="item" data-item-id="145" onclick="openModal(this)">
+                        <div>
+                            <h3>Çay </h3>
+                            <p>Ətraflı bax........</p>
+                        </div>
+                        <span class="price">2.00₼</span>
+                    </div>
+                    <div class="item" data-item-id="206" onclick="openModal(this)">
+                        <div>
+                            <h3>Lənkəran çayı </h3>
+                            <p>Ətraflı bax........</p>
+                        </div>
+                        <span class="price">5.00₼</span>
+                    </div>
+                    <div class="item" data-item-id="146" onclick="openModal(this)">
+                        <div>
+                            <h3>Süd </h3>
+                            <p>Ətraflı bax........</p>
+                        </div>
+                        <span class="price">1.50₼</span>
+                    </div>
+                    <div class="item" data-item-id="147" onclick="openModal(this)">
+                        <div>
+                            <h3>Kofe </h3>
+                            <p>Ətraflı bax........</p>
+                        </div>
+                        <span class="price">1.30₼</span>
+                    </div>
+                    <div class="item" data-item-id="148" onclick="openModal(this)">
+                        <div>
+                            <h3>İsti şokolad </h3>
+                            <p>Ətraflı bax........</p>
+                        </div>
+                        <span class="price">1.50₼</span>
+                    </div>
+                    <div class="item" data-item-id="149" onclick="openModal(this)">
+                        <div>
+                            <h3>Cappuccino </h3>
+                            <p>Ətraflı bax........</p>
+                        </div>
+                        <span class="price">3.00₼</span>
+                    </div>
+                    <div class="item" data-item-id="150" onclick="openModal(this)">
+                        <div>
+                            <h3>Americano </h3>
+                            <p>Ətraflı bax........</p>
+                        </div>
+                        <span class="price">3.00₼</span>
+                    </div>
+                    <div class="item" data-item-id="151" onclick="openModal(this)">
+                        <div>
+                            <h3>Espresso </h3>
+                            <p>Ətraflı bax........</p>
+                        </div>
+                        <span class="price">3.00₼</span>
+                    </div>
+                    <div class="item" data-item-id="152" onclick="openModal(this)">
+                        <div>
+                            <h3>Double espresso </h3>
+                            <p>Ətraflı bax........</p>
+                        </div>
+                        <span class="price">4.00₼</span>
+                    </div>
+                    <div class="item" data-item-id="153" onclick="openModal(this)">
+                        <div>
+                            <h3>Cofe Latte </h3>
+                            <p>Ətraflı bax........</p>
+                        </div>
+                        <span class="price">3.00₼</span>
+                    </div>
+                    <div class="item" data-item-id="154" onclick="openModal(this)">
+                        <div>
+                            <h3>Çay dəzgahı çaynik </h3>
+                            <p>Ətraflı bax........</p>
+                        </div>
+                        <span class="price">15.00₼</span>
+                    </div>
+                    <div class="item" data-item-id="155" onclick="openModal(this)">
+                        <div>
+                            <h3>Çay dəzgahı Somavar </h3>
+                            <p>Ətraflı bax........</p>
+                        </div>
+                        <span class="price">25.00₼</span>
+                    </div>
+                    <div class="category" id="colddirink">
+                        <h2>Soyuq içəceklər</h2>
+                        <div class="item" data-item-id="156" onclick="openModal(this)">
+                            <div>
+                                <h3>Ayran </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">1.00₼</span>
+                        </div>
+                        
+                        <div class="item" data-item-id="158" onclick="openModal(this)">
+                            <div>
+                                <h3>Su(qazlı/qazsız)0.5lt </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">0.70₼</span>
+                        </div>
+                        <div class="item" data-item-id="159" onclick="openModal(this)">
+                            <div>
+                                <h3>Su(qazlı/qazsız)  1.0lt </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">1.20₼</span>
+                        </div>
+                        <div class="item" data-item-id="160" onclick="openModal(this)">
+                            <div>
+                                <h3>Cola Fanta Sprite Pepsi 0.5lt </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">1.20₼</span>
+                        </div>
+                        <div class="item" data-item-id="161" onclick="openModal(this)">
+                            <div>
+                                <h3>Cola Fanta Sprite Pepsi 1.0lt</h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">2.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="162" onclick="openModal(this)">
+                            <div>
+                                <h3>Duşes tərxun(şüşə) 0.5lt </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">2.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="163" onclick="openModal(this)">
+                            <div>
+                                <h3>Sirab Badamlı(şüşə)  0.5lt </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">1.50₼</span>
+                        </div>
+                        <div class="item" data-item-id="164" onclick="openModal(this)">
+                            <div>
+                                <h3>Cola Fanta Sprite Pepsi (şüşə,qutuda) </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">1.50₼</span>
+                        </div>
+                        <div class="item" data-item-id="165" onclick="openModal(this)">
+                            <div>
+                                <h3>Cappy 0.5lt </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">1.70₼</span>
+                        </div>
+                        <div class="item" data-item-id="166" onclick="openModal(this)">
+                            <div>
+                                <h3>Fuse tea , Lipton , i am tea 0.5lt </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">1.70₼</span>
+                        </div>
+                        <div class="item" data-item-id="167" onclick="openModal(this)">
+                            <div>
+                                <h3>Fuse tea , Lipton , i am tea 1.0lt  </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">2.50₼</span>
+                        </div>
+                        <div class="item" data-item-id="168" onclick="openModal(this)">
+                            <div>
+                                <h3>Kompot </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">3.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="169" onclick="openModal(this)">
+                            <div>
+                                <h3>Cappy 1.0lt </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">3.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="170" onclick="openModal(this)">
+                            <div>
+                                <h3>Fresh </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">5.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="171" onclick="openModal(this)">
+                            <div>
+                                <h3>RedBull </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">5.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="172" onclick="openModal(this)">
+                            <div>
+                                <h3>Hell Energy </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">1.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="173" onclick="openModal(this)">
+                            <div>
+                                <h3>Aquavita 0.5l (qazlı/qazsız) </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">0.70₼</span>
+                        </div>
+                        <div class="item" data-item-id="174" onclick="openModal(this)">
+                            <div>
+                                <h3>Gülüstan 0.5l </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">1.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="175" onclick="openModal(this)">
+                            <div>
+                                <h3>Gülüstan 1.0l </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">2.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="176" onclick="openModal(this)">
+                            <div>
+                                <h3>Milla ayran 0.2l </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">0.80₼</span>
+                        </div>
+                        <div class="item" data-item-id="176" onclick="openModal(this)">
+                            <div>
+                                <h3>Milla ayran 0.33l </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">1.20₼</span>
+                        </div>
+                        <div class="item" data-item-id="176" onclick="openModal(this)">
+                            <div>
+                                <h3>Milla ayran 1.0l </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">x₼</span>
+                        </div>
+                        <div class="item" data-item-id="180" onclick="openModal(this)">
+                            <div>
+                                <h3>Mia limonad 0.5l </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">1.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="181" onclick="openModal(this)">
+                            <div>
+                                <h3>Mia limonad 1.0l </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">2.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="181" onclick="openModal(this)">
+                            <div>
+                                <h3>Mia (şüşə) 1.0l </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">2.50₼</span>
+                        </div>
+                        <div class="item" data-item-id="177" onclick="openModal(this)">
+                            <div>
+                                <h3>Coolmix (limonad) </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">5.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="178" onclick="openModal(this)">
+                            <div>
+                                <h3>Zadezani </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">2.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="179" onclick="openModal(this)">
+                            <div>
+                                <h3>Maccofe </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">2.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="183" onclick="openModal(this)">
+                            <div>
+                                <h3>Qızıl quyu 0.5 l </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">2.00₼</span>
+                        </div>
+                        <div class="item" data-item-id="183" onclick="openModal(this)">
+                            <div>
+                                <h3>Qızıl quyu  1.0l </h3>
+                                <p>Ətraflı bax........</p>
+                            </div>
+                            <span class="price">2.80₼</span>
+                        </div>
+                        <div class="category" id="doner">
+                            <h2>Hacıoglu Dönər</h2>
+                            <div class="item" data-item-id="190" onclick="openModal(this)">
+                                <div>
+                                    <h3>Ət dönəri  cörək/lavaş </h3>
+                                    <p>Ətraflı bax........</p>
+                                </div>
+                                <span class="price">3.20₼</span>
+                            </div>
+                            <div class="item" data-item-id="191" onclick="openModal(this)">
+                                <div>
+                                    <h3>Toyuq dönəri  cörək/lavaş </h3>
+                                    <p>Ətraflı bax........</p>
+                                </div>
+                                <span class="price">2.70₼</span>
+                            </div>
+                            <div class="item" data-item-id="190" onclick="openModal(this)">
+                                <div>
+                                    <h3>Ət dönər (böyük) </h3>
+                                    <p>Ətraflı bax........</p>
+                                </div>
+                                <span class="price">5.00₼</span>
+                            </div>
+                            <div class="item" data-item-id="193" onclick="openModal(this)">
+                                <div>
+                                    <h3>Pulovüstü dönər </h3>
+                                    <p>Ətraflı bax........</p>
+                                </div>
+                                <span class="price">8.50₼</span>
+                            </div>
+                            <div class="item" data-item-id="194" onclick="openModal(this)">
+                                <div>
+                                    <h3>Porsion dönər </h3>
+                                    <p>Ətraflı bax........</p>
+                                </div>
+                                <span class="price">7.50₼</span>
+                            </div>
+                            <div class="item" data-item-id="192" onclick="openModal(this)">
+                                <div>
+                                    <h3>Isgəndər </h3>
+                                    <p>Ətraflı bax........</p>
+                                </div>
+                                <span class="price">11.00₼</span>
+                            </div>
+                            <div class="category" id="corek">
+                                <h2>Çörəklər</h2>
+                                <div class="item" data-item-id="213" onclick="openModal(this)">
+                                    <div>
+                                        <h3>Təndir çörəyi</h3>
+                                        <p>Ətraflı bax........</p>
+                                    </div>
+                                    <span class="price">0.90₼</span>
+                                </div>
+                                <div class="item" data-item-id="214" onclick="openModal(this)">
+                                    <div>
+                                        <h3>Kürə çörəyi</h3>
+                                        <p>Ətraflı bax........</p>
+                                    </div>
+                                    <span class="price">0.90₼</span>
+                                </div>
+                                <div class="item" data-item-id="215" onclick="openModal(this)">
+                                    <div>
+                                        <h3>Qara çörəy</h3>
+                                        <p>Ətraflı bax........</p>
+                                    </div>
+                                    <span class="price">0.90₼</span>
+                                </div>
+                                <div class="item" data-item-id="215" onclick="openModal(this)">
+                                    <div>
+                                        <h3>Lavaş</h3>
+                                        <p>Ətraflı bax........</p>
+                                    </div>
+                                    <span class="price">0.20₼</span>
+                                </div>
+
+
+
+
+
+
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <img id="modal-image" src="" alt="" style="width:100%; height:auto;">
+            <p id="modal-description"></p>
+            <p id="modal-price"></p>
+        </div>
+    </div>
+    
+    
+
+    <button class="back-to-top" id="backToTopBtn">⬆</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+    <script>
+        const options = {
+            includeScore: true,
+            threshold: 0.4,
+            keys: ['title', 'description']
+        };
+
+        const categories = Array.from(document.querySelectorAll('.category'));
+        const items = Array.from(document.querySelectorAll('.item')).map(item => ({
+            title: item.querySelector('h3').textContent.toLowerCase(),
+            description: item.querySelector('p').textContent.toLowerCase(),
+            element: item
+        }));
+
+        let fuse = new Fuse(items, options);
+
+        function updateDisplay(query) {
+            if (query) {
+                const results = fuse.search(query);
+                items.forEach(item => {
+                    item.element.style.display = 'none';
+                });
+                results.forEach(result => {
+                    result.item.element.style.display = 'flex';
+                });
+            } else {
+                items.forEach(item => {
+                    item.element.style.display = 'flex';
+                });
+            }
+
+            categories.forEach(category => {
+                const categoryItems = Array.from(category.querySelectorAll('.item'));
+                const shouldShowCategory = categoryItems.some(item => item.style.display === 'flex');
+                category.style.display = shouldShowCategory ? 'block' : 'none';
+            });
+        }
+
+        document.getElementById('search').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            updateDisplay(query);
+        });
+
+        function handleDelete(event) {
+            const item = event.target.closest('.item');
+            if (item) {
+                item.remove();
+                updateItems();
+                updateDisplay(document.getElementById('search').value.toLowerCase());
+            }
+        }
+
+        function updateItems() {
+            items.length = 0;
+            categories.forEach(category => {
+                const categoryItems = Array.from(category.querySelectorAll('.item'));
+                categoryItems.forEach(item => {
+                    items.push({
+                        title: item.querySelector('h3').textContent.toLowerCase(),
+                        description: item.querySelector('p').textContent.toLowerCase(),
+                        element: item
+                    });
+                });
+            });
+            fuse = new Fuse(items, options);
+        }
+
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', handleDelete);
+        });
+
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        window.onscroll = function() {
+            backToTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        };
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        function openModal(element) {
+    const itemId = element.getAttribute('data-item-id');
+    const itemData = {
+        1: {
+            title: "Soyutma Yumurta",
+            description: "",
+            price: "",
+            image: "yumurta1.jpeg"
+        },
+        2: {
+            title: "Soyutma Kənd Yumurtası",
+            description: "",
+            price: "",
+            image: "yumurta1.jpeg"
+        },
+        3: {
+            title: 'Sosiska',
+            description: "",
+            price: "",
+            image: "sosiska.jpeg"
+        },
+        4: {
+            title: "Kənd şoru",
+            description: "",
+            price: "",
+            image: "sor.jpeg"
+        },
+        5: {
+            title: "Zeytun",
+            description: "",
+            price: "",
+            image: "zeytun.jpeg"
+        },
+        6: {
+            title: 'Qaymaq',
+            description: "",
+            price: "",
+            image: "qaymaq.jpeg"
+        },
+        7: {
+            title: "Kənd pendiri",
+            description: "",
+            price: "",
+            image: "kendpendiri.jpeg"
+        },
+        8: {
+            title: "Kərə yağı",
+            description: "",
+            price: "",
+            image: "kereyagi.jpeg"
+        },
+        9: {
+            title: 'Nehrə yağı',
+            description: "",
+            price: "",
+            image: "nehreyagi.jpeg"
+        },
+        10: {
+            title: "Bal",
+            description: "",
+            price: "",
+            image: "bal.jpeg"
+        },
+        11: {
+            title: "Qayğanaq",
+            description: "",
+            price: "",
+            image: "qayganaq.jpeg"
+        },
+        12: {
+            title: 'Yağ-pendir',
+            description: "",
+            price: "",
+            image: "sosishka.jpeg"
+        },
+        13: {
+            title: "Kolbasa",
+            description: "",
+            price: "",
+            image: "kolbasa.jpeg"
+        },
+        14: {
+            title: "Südlü aş",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        15: {
+            title: 'Motal pendiri',
+            description: "",
+            price: "",
+            image: "motal.jpeg"
+        },
+        16: {
+            title: "Pomidor-yumurta",
+            description: "",
+            price: "",
+            image: "pomidoryumurta.jpeg"
+        },
+        17: {
+            title: "Sosiska(kolbasa) yumurta",
+            description: "",
+            price: "",
+            image: "sosiskayumurta.jpeg"
+        },
+        18: {
+            title: 'Kükü',
+            description: "",
+            price: "",
+            image: "kuku.jpeg"
+        },
+        19: {
+            title: "Sucuklu yumurta",
+            description: "",
+            price: "",
+            image: "sucukluyumurta.jpeg"
+        },
+        20: {
+            title: "Süzmə",
+            description: "Qatıq  ,  şüyüd  ,  sarımsaq  ,  duz .",
+            price: "",
+            image: "suzme.jpeg"
+        },
+        21: {
+            title: 'Acika',
+            description: "Pomidor pastası  ,  göyərti  ,  soğan  ,  duz  ,  istiot .",
+            price: "",
+            image: "acika.jpeg"
+        },
+        22: {
+            title: "Göyərti",
+            description: "",
+            price: "",
+            image: "goyerti.jpeg"
+        },
+        23: {
+            title: "Xiyar-pomidor",
+            description: "",
+            price: "",
+            image: "sveji.jpeg"
+        },
+        24: {
+            title: 'Çoban salatı',
+            description: "Pomidor  ,  xiyar  ,  mövsümi göyərti  ,  duz .",
+            price: "",
+            image: "coban.jpeg"
+        },
+        25: {
+            title: "Paytaxt salatı",
+            description: "Toyuq əti  ,  kartof   ,  kök  ,  yaşıl noxud   ,  yumurta   ,  şüyüd  ,  mayonez   ,  duz   ,  istiot.",
+            price: "",
+            image: "paytaxt.jpeg"
+        },
+        26: {
+            title: "Mimoza salatı",
+            description: "Toyuq  ,  kartof  ,  yerkökü  ,  mayonez  ,  yumurta  ,  qoz ləpəsi   ,  holland pendiri  ,  duz  ,  istiot.",
+            price: "",
+            image: "mimoza.jpeg"
+        },
+        27: {
+            title: 'Vineqred salatı',
+            description: "Cuğundur  ,  kök  ,  kartof  ,  qırmızı lobiya   ,  zeytun yağı   ,  göyərti  ,  duz , istiot.",
+            price: "",
+            image: "vinegrd.jpeg"
+        },
+        28: {
+            title: "Manqal salatı",
+            description: "Pomidor  ,  badımcan  ,  yaşıl bibər   ,  acı bibər   ,  soğan  , sarımsaq   ,  zeytun yağı  ,  göyərti  ,  duz  ,  istiot.",
+            price: "",
+            image: "mangal.jpeg"
+        },
+        29: {
+            title: "Şuba salatı",
+            description: "Cuğundur  , toyuq əti  ,  yerkökü  ,  mayonez   ,  duz   ,  istiot.",
+            price: "",
+            image: "suba.jpeg"
+        },
+        30: {
+            title: 'Lavaş salatı',
+            description: "",
+            price: "",
+            image: "yuxa.jpeg"
+        },
+        31: {
+            title: "Meyvə",
+            description: "",
+            price: "",
+            image: "yumurnta.jpeg"
+        },
+        32: {
+            title: "Toyuq kotleti",
+            description: "Toyuq əti , soğan , duz , istiot , yağ",
+            price: "",
+            image: "toyuqkotlet.jpeg"
+        },
+        33: {
+            title: 'Ət kotleti',
+            description: "Dana əti , soğan , duz , istiot , yağ.",
+            price: "",
+            image: "etkotlet.jpeg"
+        },
+        34: {
+            title: "Kievski kotlet",
+            description: "Toyuq əti , üyüdülmüş suxarik , holland pendiri , kərə yağı , duz , istiot.",
+            price: "",
+            image: "yumucrta.jpeg"
+        },
+        35: {
+            title: "Toyuq langet",
+            description: " Toyuq əti , duz istiot , yağ",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        36: {
+            title: 'Ətli börək',
+            description: "",
+            price: "",
+            image: "sosopiska.jpeg"
+        },
+        37: {
+            title: "Xəngəl",
+            description: "Dana əti , un , kərə yağı , soğan , duz , istiot ",
+            price: "",
+            image: "xengel.jpeg"
+        },
+        38: {
+            title: "Toyuq yeməkləri",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        39: {
+            title: ' Toyuq qulyaş',
+            description: "Toyuq əti , soğan , bibər , pomidor , dəfnə yarpağı , duz , tomat , yağ.",
+            price: "",
+            image: "toyuqqulyas.jpeg"
+        },
+        40: {
+            title: "Ət qulyaş",
+            description: "Dana əti , soğan , bibər , pomidor , dəfnə yarpağı , duz , tomat , yağ",
+            price: "",
+            image: "etqulyas.jpeg"
+        },
+        41: {
+            title: "Qazan kotleti",
+            description: "Dana əti , soğan , kartof , bibər , pomidor , göyərti , duz , istiyot , yağ.",
+            price: "",
+            image: "qazankotlet.jpeg"
+        },
+        42: {
+            title: 'Toyuq Souzu',
+            description: "Toyuq əti , kartof  , soğan  , tomat  ,  duz  , istiot  , yağ.",
+            price: "",
+            image: "toyuqsouz.jpeg"
+        },
+        43: {
+            title: " Ət souzu",
+            description: "Dana əti , kartof , soğan  , pomidor , yumurta  , yağ  , duz  , istiot.",
+            price: "",
+            image: "etsouz.jpeg"
+        },
+        44: {
+            title: "Ət musaqqa",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        45: {
+            title: 'Tərəvəz qızartma',
+            description: "",
+            price: "",
+            image: "sosishgka.jpeg"
+        },
+        46: {
+            title: "Dolmalar",
+            description: "",
+            price: "",
+            image: "dolma.jpeg"
+        },
+        47: {
+            title: "Kənd cücəsi çığırtması",
+            description: " Kənd cücəsi ,  soğan  , pomidor  ,  yumurta  , yağ  ,  duz ,  istiot.",
+            price: "",
+            image: "cigirtma.jpeg"
+        },
+        48: {
+            title: 'Ət yeməkləri',
+            description: "",
+            price: "",
+            image: "sohsiska.jpeg"
+        },
+        49: {
+            title: "Toyuq qovurma",
+            description: "Toyuq əti , kartof ,  bibər ,  pomidor ,  göyərti  , duz ,  istiot ,  yağ.",
+            price: "",
+            image: "yumurtaf.jpeg"
+        },
+        50: {
+            title: "Kalafur/Buğlama",
+            description: "Quzu əti , pomidor  , bibər  , kəkotu  , sarımsaq ,  göyərti  , duz , istiot , yağ.",
+            price: "",
+            image: "kalafur.jpeg"
+        },
+        51: {
+            title: 'Piti',
+            description: "Quzu əti  , quyruq  ,  noxud  ,  şabalıd  , soğan ,  duz , istiot .",
+            price: "",
+            image: "piti.jpeg"
+        },
+        52: {
+            title: "Julyen",
+            description: "Toyuq flesi , göbələk  , qaymaq , holland pendiri  , soğan  , duz  ,  istiot .",
+            price: "",
+            image: "julyen.jpeg"
+        },
+        53: {
+            title: "Ətli nar qovurma",
+            description: "Quzu əti  ,  soğan  ,  nar  ,  şabalıd  ,  duz  ,  istiot  ,  yağ.",
+            price: "",
+            image: "narqovurma.jpeg"
+        },
+        54: {
+            title: 'Qaymaqlı toyuq',
+            description: "Toyuq flesi  , soğan  ,  göbələk  ,  qaymaq  ,  duz  ,  istiot  .",
+            price: "",
+            image: "qaymaqlitoyuq.jpeg"
+        },
+        55: {
+            title: "Hasanpaşa köftə",
+            description: "",
+            price: "",
+            image: "yumurnta.jpeg"
+        },
+        56: {
+            title: "İzmir köftəsi",
+            description: "Dana əti ,  yerkökü  ,  bibər ,  pomidor , kartof , duz , istiot  ,  yağ.",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        57: {
+            title:'Şahplov(pors)',
+            description: "Düyü ,  quzu əti  ,  soğan  ,  şabalıd  ,  ərik qurusu  ,  alça turşusu  , lavaş  ,  kərə yağı  ,  kişmiş  ,  duz  , istiot.",
+            price: "",
+            image: "sahplov.jpeg"
+        },
+        58: {
+            title: "Quzu təndir(pors)",
+            description: "Quzu əti  ,  pomidor , soğan  ,  bibər  ,  kəkotu  , sarımsaq  , duz  ,  istiot , yağ.",
+            price: "",
+            image: "yumucrta.jpeg"
+        },
+        59: {
+            title: "Kənd cücəsi(soyutma)",
+            description: "Kənd cücüsi  ,  yerkökü  ,  kartof  , soğan  ,  duz , istiot.",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        60: {
+            title: 'Toyuq ləvəngisi',
+            description: "",
+            price: "",
+            image: "toyuqlevengi.jpeg"
+        },
+        61: {
+            title: "Kənd cücəsi çığırtması( bütöv)",
+            description:"",
+            price: "",
+            image: "yumurdta.jpeg"
+        },
+        62: {
+            title: "Toyuq sacı",
+            description: "Toyuq əti ,  soğan  ,  bibər  ,  göbələk  ,  kartof  ,  badımcan  ,  pul bibər  ,  acı bibər  ,  yaşıl bibər  ,  duz  ,  istiot  ,  yağ .",
+            price: "",
+            image: "toyuqsaci.jpeg"
+        },
+        63: {
+            title: 'Balıq ləvəngisi',
+            description: "Balıq (kütüm)  ,  qoz  ,  soğan  , turşu (alça)  ,  duz  , istiot .",
+            price: "",
+            image: "baliqlevengi.jpeg"
+        },
+        64: {
+            title: "Quzu sacı ",
+            description: "Quzu əti  ,  soğan  ,  bibər  ,  göbələk  ,  kartof  ,  badımcan  ,  pul bibər  ,  acı bibər  ,  yaşıl bibər  ,  duz  ,  istiot  ,  yağ .",
+            price: "",
+            image: "quzusaci.jpeg"
+        },
+        65: {
+            title: "Çəki(sazan)",
+            description: "",
+            price: "",
+            image: "sazan.jpeg"
+        },
+        66: {
+            title: 'Xaşam',
+            description: "",
+            price: "",
+            image: "xasam.jpeg"
+        },
+        67: {
+            title: "Kütüm",
+            description: "",
+            price: "",
+            image: "yumurnta.jpeg"
+        },
+        68: {
+            title: "Balıq (setkada)",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        69: {
+            title: 'Belamur',
+            description: "",
+            price: "",
+            image: "ssiska.jpeg"
+        },
+        70: {
+            title: "Nərə",
+            description: "",
+            price: "",
+            image: "asetrin.jpeg"
+        },
+        71: {
+            title: "Dovğa stəkanda",
+            description: "Qatıq  ,  noxud  ,  qarışıq göyərti  ,  yumru düyü  ,  duz .",
+            price: "",
+            image: "dovga.jpeg"
+        },
+        72: {
+            title: 'Dovğa bakalda',
+            description: "Qatıq  ,  noxud  ,  qarışıq göyərti  ,  yumru düyü  ,  duz.",
+            price: "",
+            image: "dovga.jpeg"
+        },
+        73: {
+            title: "Dovğa kasada",
+            description: "Qatıq  ,  noxud  ,  qarışıq göyərti  ,  yumru düyü  ,  duz.",
+            price: "",
+            image: "dovga.jpeg"
+        },
+        74: {
+            title: "Mərci",
+            description: "Qırmızı mərcimək  , soğan  , tomat(bibər)  ,  nanə qurusu  ,  duz  ,  qara istiot",
+            price: "",
+            image: "merci.jpeg"
+        },
+        75: {
+            title: 'Yayla supu',
+            description: "Qatıq  ,  yumru düyü  ,  nanə qurusu  ,  kərə yağı  ,  duz  .",
+            price: "",
+            image: "yayla.jpeg"
+        },
+        76: {
+            title: "Toyuq supu",
+            description: "Toyuq əti  ,  soğan  ,  yerkökü  ,  kartof  ,  vərməşil  ,  şüyüd   ,  duz  ,  istiot  ,  yağ.",
+            price: "",
+            image: "toyuqsupu.jpeg"
+        },
+        77: {
+            title: "Borş",
+            description: "Sümüklü dana əti  ,  kələm  ,  kök   ,  soğan   ,  kartof   ,  cuğundur  ,  göyərti   ,  duz  ,  istiot  ,  yağ.",
+            price: "",
+            image: "bors.jpeg"
+        },
+        78: {
+            title: 'Quru fasulyə (lobya)',
+            description: "Quru fasulyə  ,  dana əti  ,  soğan  ,   tomat pastası  ,  duz  ,  istiot  ,  yağ.",
+            price: "",
+            image: "fasulye.jpeg"
+        },
+        79: {
+            title: "Hinduşka supu",
+            description: " Hinduşka əti   ,  yumru düyü   ,  yerkökü  ,  kartof   ,  soğan   ,   duz   ,  istiot  ,  yağ.",
+            price: "",
+            image: "yumurnta.jpeg"
+        },
+        80: {
+            title: "Düşbərə",
+            description: "Dana əti  , un  ,  soğan  ,  quru nanə  ,  duz  ,  istiot  ,  yağ ",
+            price: "",
+            image: "dusbere.jpeg"
+        },
+        81: {
+            title: 'Kənd cücə supu',
+            description: "Kənd cücə əti  ,  soğan  ,  yerkökü  ,  kartof  ,  vərməşil  , düyü   ,  şüyüd   ,  duz  ,  istiot  ,  yağ .",
+            price: "",
+            image: "ssiska.jpeg"
+        },
+        82: {
+            title: "Göbələkli şorba",
+            description: "Göbələk  ,  soğan  ,  qaymaq  ,  duz  ,  istiot .",
+            price: "",
+            image: "yumucrta.jpeg"
+        },
+        83: {
+            title: "Düyü",
+            description: " ",
+            price: "",
+            image: "duyu.jpeg"
+        },
+        84: {
+            title: 'Qreçka',
+            description: "",
+            price: "",
+            image: "qrecka.jpeg"
+        },
+        85: {
+            title: "Makaron",
+            description: "",
+            price: "",
+            image: "makaron.jpeg"
+        },
+        86: {
+            title: "Püre",
+            description: "",
+            price: "",
+            image: "pure.jpeg"
+        },
+        87: {
+            title: ' Spagetti',
+            description: "",
+            price: "",
+            image: "spagetti.jpeg"
+        },
+        88: {
+            title: "Verməşil",
+            description: "",
+            price: "",
+            image: "yumucrta.jpeg"
+        },
+        89: {
+            title: "Bulgur",
+            description: "",
+            price: "",
+            image: "bulgur.jpeg"
+        },
+        90: {
+            title: ' Kartof Fri',
+            description: "",
+            price: "",
+            image: "fri.jpeg"
+        },
+        91: {
+            title: "Kartof kababı",
+            description: "",
+            price: "",
+            image: "kartofkababi.jpeg"
+        },
+        92: {
+            title: "Kartof lüləsi ",
+            description: "",
+            price: "",
+            image: "kartoflulesi.jpeg"
+        },
+        93: {
+            title: 'Kartof kababı (quyruqla)',
+            description: "",
+            price: "",
+            image: "kartofquyruq.jpeg"
+        },
+        94: {
+            title: "Toyuq kababı",
+            description: "",
+            price: "",
+            image: "toyuqkababi.jpeg"
+        },
+        95: {
+            title: "Ciyər içalat",
+            description: "",
+            price: "",
+            image: "ciyericalat.jpeg"
+        },
+        96: {
+            title: 'Xan kababı',
+            description: "",
+            price: "",
+            image: "xankababi.jpeg"
+        },
+        97: {
+            title: "Lülə",
+            description: "",
+            price: "",
+            image: "lule.jpeg"
+        },
+        98: {
+            title: "Tikə",
+            description: "",
+            price: "",
+            image: "tike.jpeg"
+        },
+        99: {
+            title: 'Dana basdırma',
+            description: "",
+            price: "",
+            image: "danabasdirma.jpeg"
+        },
+        100: {
+            title: "Antrikot",
+            description: "",
+            price: "",
+            image: "antrikot.jpeg"
+        },
+        101: {
+            title: "Hinduşka kababı",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        102: {
+            title: 'Qarışıq kabab',
+            description: "",
+            price: "",
+            image: "sosisa.jpeg"
+        },
+        103: {
+            title: "Kənd çolpası(setkada)",
+            description: "",
+            price: "",
+            image: "yumurnta.jpeg"
+        },
+        104: {
+            title: "Sadə lahmacun",
+            description: "Dana əti  ,  soğan  ,  bibər  ,  pomidor  ,  cəfəri  ,  duz  ,  istiot  ,  un.",
+            price: "",
+            image: "sadelahmacun.jpeg"
+        },
+        105: {
+            title: 'Acılı lahmacun',
+            description: " Dana əti  ,  soğan  ,  bibər  ,  pomidor  ,  cəfəri  ,  duz  ,  istiot  , pul bibər  ,  un.",
+            price: "",
+            image: "acililahmacun.jpeg"
+        },
+        106: {
+            title: "Pendirli lahmacun",
+            description: "Dana əti  ,  soğan  ,  pendir  ,  bibər  ,  pomidor  ,  cəfəri  ,  duz  ,  istiot  ,  un.",
+            price: "",
+            image: "pendirlilahmacun.jpeg"
+        },
+        107: {
+            title: "Hacıoglu qarışıq lahmacun",
+            description: "Dana əti  ,  soğan  ,  bibər  ,  pomidor  ,  cəfəri  ,  qoz  ,  duz  ,  istiot  ,  un..",
+            price: "",
+            image: "qarisiqlahmacun.jpeg"
+        },
+        108: {
+            title: 'Sadə pizza (böyük)',
+            description: "Un  ,  maya  ,  süd  ,  pendir(mozarella)  ,  duz .",
+            price: "",
+            image: "sadepizza.jpeg"
+        },
+        109: {
+            title: "Sadə pizza (kiçik)",
+            description: "Un  ,  maya  ,  süd  ,  pendir(mozarella)  ,  duz .",
+            price: "",
+            image: "sadepizza.jpeg"
+        },
+        110: {
+            title: "Toyuqlu pizza (böyük)",
+            description: "Un  ,  maya  ,  süd  ,  pendir(mozarella)  ,  toyuq əti  ,  pomidor   ,  bibər  ,  göbələk  ,  duz.",
+            price: "",
+            image: "toyuqlupizza.jpeg"
+        },
+        111: {
+            title: 'Toyuqlu pizza (kiçik)',
+            description: "Un  ,  maya  ,  süd  ,  pendir(mozarella  ,  toyuq əti  ,  pomidor   ,  bibər  ,  göbələk  ,  duz.",
+            price: "",
+            image: "toyuqlupizza.jpeg"
+        },
+        112: {
+            title: "Qıymalı pidə",
+            description: "Un  ,  maya  ,  süd  ,  yağ  ,  dana əti  ,  bibər  ,  pomidor   ,  duz  ,  istiot.",
+            price: "",
+            image: "qiymalipide.jpeg"
+        },
+        113: {
+            title: "Quşbaşı pidə",
+            description: "Un  ,  maya  ,  süd  ,  pendir  ,  yağ  ,  dana əti  ,  bibər  ,  pomidor   ,  duz  ,  istiot..",
+            price: "",
+            image: "qusbasipide.jpeg"
+        },
+        114: {
+            title: 'Sosisli pizza(böyük)',
+            description: ".",
+            price: "",
+            image: "sosiskal.jpeg"
+        },
+        115: {
+            title: "Sosisli pizza (kiçik)",
+            description: "Un    maya    süd    duz    sosis    bibər    pomidor     göbələk .",
+            price: "",
+            image: "yumurnta.jpeg"
+        },
+        116: {
+            title: "Qarışıq pidə",
+            description: "Dana əti  ,  mozarella pendiri  ,  pomidor  ,  biber  ,  duz  ,  istiot.",
+            price: "",
+            image: "qarisiqpide.jpeg"
+        },
+        117: {
+            title: 'Pendirli pidə',
+            description: "Un  ,  maya  ,  yağ   ,  süd  ,  pendir(mozarella)  ,  duz .",
+            price: "",
+            image: "pendirlipide.jpeg"
+        },
+        118: {
+            title: "Ətli pizza(böyük)",
+            description: "Dana əti  ,  mozarella pendiri   ,  un  ,  maya  ,  duz  ,  şüyüd   ,  bibər  ,  pomidor   ,   göbələk .",
+            price: "",
+            image: "yumucrta.jpeg"
+        },
+        119: {
+            title: "Ətli pizza (kiçik)",
+            description: "Dana əti  ,  mozarella pendiri   ,  un  ,  maya  ,  duz  ,  şüyüd   ,  bibər  ,  pomidor   ,   göbələk ..",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        120: {
+            title: 'Hacıoğlu qarışıq pizza',
+            description: "Toyuq əti  ,  sosis   ,  kolbasa   ,  bibər  ,   pomidor   ,  göbələk  ,  mozarella pendiri   ,  un  ,  maya  ,  süd   ,  duz.",
+            price: "",
+            image: "qarisiqpizza.jpeg"
+        },
+        121: {
+            title: "Keks",
+            description: "Un  ,  şəkər tozu  ,  yumurta  ,  yağ  ,  kişmiş  ,   süd  ,  qabartma   ,  vanil .",
+            price: "",
+            image: "keks.jpeg"
+        },
+        122: {
+            title: "Şəkərçörəyi",
+            description: "Un  , yumurta  ,  yağ  ,  şəkər tozu  ,  vanil  ,  qabartma.",
+            price: "",
+            image: "sekercoreyi.jpeg"
+        },
+        123: {
+            title: 'Qoğal',
+            description: "Un   şit yağ    pesok    yumurta .",
+            price: "",
+            image: "qogal.jpeg"
+        },
+        124: {
+            title: "Bulka",
+            description: "Un    yumurta    şəkər tozu    vanil    yağ.",
+            price: "",
+            image: "bulka.jpeg"
+        },
+        125: {
+            title: "Turbuçka",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        126: {
+            title: 'Simit',
+            description: "Un  ,  yumurta  ,  şəkər tozu  , yağ  ,  yaş maya  ,  küncüt.",
+            price: "",
+            image: "simit.jpeg"
+        },
+        127: {
+            title: "Ekler",
+            description: "Su  ,  yağ  ,  yumurta   ,  qatılaşdırılmış süd .",
+            price: "",
+            image: "ekler.jpeg"
+        },
+        128: {
+            title: "Kətə",
+            description: "Un  ,  şəkər tozu  ,  yumurta  ,  yağ  ,  maya  ,  qoz ləpəsi",
+            price: "",
+            image: "kete.jpeg"
+        },
+        129: {
+            title: 'Milli paxlava',
+            description: "Un , yumurta  ,  şəkər tozu  ,  şit yağ  ,  maya  ,  vanil  ,  hil  ,  qoz  ,  şərbət .",
+            price: "",
+            image: "paxlava.jpeg"
+        },
+        130: {
+            title: "Pirojna cemli ",
+            description: "Toyuq əti , üyüdülmüş suxarik , holland pendiri , kərə yağı , duz , istiot.",
+            price: "",
+            image: "yumucrta.jpeg"
+        },
+        131: {
+            title: "Pirojna",
+            description: " Un  ,  yumurta  ,  şəkər tozu  ,  qatıq  ,  yağ  ,  qabartma   ,  vanil  ,   limon   ,  qatılaşdırılmış süd",
+            price: "",
+            image: "pirojna.jpeg"
+        },
+        132: {
+            title: 'Snikers',
+            description: "",
+            price: "",
+            image: "snikers.jpeg"
+        },
+        133: {
+            title: "Sütlac",
+            description: " ",
+            price: "",
+            image: "sutlac.jpeg"
+        },
+        134: {
+            title: "Mürəbbə",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        135: {
+            title:'Künəfə',
+            description: "",
+            price: "",
+            image: "kunefe.jpeg"
+        },
+        136: {
+            title: "Tortlar(1kq)",
+            description: "",
+            price: "",
+            image: "yumucrta.jpeg"
+        },
+        137: {
+            title: "Kələm",
+            description: "",
+            price: "",
+            image: "kelem.jpeg"
+        },
+        138: {
+            title: 'Xiyar',
+            description: "",
+            price: "",
+            image: "xiyar.jpeg"
+        },
+        139: {
+            title: "Bibər",
+            description: "",
+            price: "",
+            image: "biber.jpeg"
+        },
+        140: {
+            title: "Alça",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        141: {
+            title: 'Badımcan',
+            description: "",
+            price: "",
+            image: "badimcan.jpeg"
+        },
+        142: {
+            title: "Sarımsaq",
+            description: "",
+            price: "",
+            image: "sarimsaq.jpeg"
+        },
+        143: {
+            title: "Qarışıq turşu",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        144: {
+            title: 'Çay (stakanda)',
+            description: "",
+            price: "",
+            image: "cayfincan.jpeg"
+        },
+        145: {
+            title: "Çay ",
+            description: "",
+            price: "",
+            image: "cay.jpeg"
+        },
+        146: {
+            title: "Süd",
+            description: "",
+            price: "",
+            image: "sud.jpeg"
+        },
+        147: {
+            title: 'Kofe',
+            description: "",
+            price: "",
+            image: "cofe.jpeg"
+        },
+        148: {
+            title: "İsti şokalad",
+            description: "",
+            price: "",
+            image: "yumucrta.jpeg"
+        },
+        149: {
+            title: "Chapuchino",
+            description: "",
+            price: "",
+            image: "kapucino.jpeg"
+        },
+        150: {
+            title: 'Americano',
+            description: "",
+            price: "",
+            image: "americano.jpeg"
+        },
+        151: {
+            title: "Espresso",
+            description: "",
+            price: "",
+            image: "expresso.jpeg"
+        },
+        152: {
+            title: "Double espresso",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        153: {
+            title: 'Cofe latte',
+            description: "",
+            price: "",
+            image: "latte.jpeg"
+        },
+        154: {
+            title: "Çay destgahı çaynik",
+            description: "",
+            price: "",
+            image: "yumucrta.jpeg"
+        },
+        155: {
+            title: "Çay destgahı Somavar",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        156: {
+            title: 'Ayran',
+            description: "",
+            price: "",
+            image: "ayran.jpeg"
+        },
+        157: {
+            title: "Qatıq",
+            description: "",
+            price: "",
+            image: "qatiq.jpeg"
+        },
+        158: {
+            title: "Su (qazlı/qazsız) 0.5lt",
+            description: "",
+            price: "",
+            image: "cola5.jpeg"
+        },
+        159: {
+            title: 'Su (qazlı/qazsız) 1.0lt',
+            description: "",
+            price: "",
+            image: "cola.jpeg"
+        },
+        160: {
+            title: "Cola Fanta Sprite  ",
+            description: "",
+            price: "",
+            image: "Cola05.jpeg"
+        },
+        161: {
+            title: "Cola Fanta Sprite",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        162: {
+            title: 'Duşes tərxun ',
+            description: "",
+            price: "",
+            image: "sosiska.jpeg"
+        },
+        163: {
+            title: "Sirab Badamlı (şüşə)",
+            description: "",
+            price: "",
+            image: "sirab.jpeg"
+        },
+        164: {
+            title: "Cola fanta sprite ",
+            description: "",
+            price: "",
+            image: "glass.jpeg"
+        },
+        165: {
+            title: 'Cappy',
+            description: "",
+            price: "",
+            image: "cappy.jpeg"
+        },
+        166: {
+            title: "Soyuq Çaylar",
+            description: "",
+            price: "",
+            image: "yumucrta.jpeg"
+        },
+        167: {
+            title: "Soyuq Çaylar",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        168: {
+            title: 'Kampot',
+            description: "",
+            price: "",
+            image: "sosiska.jpeg"
+        },
+        169: {
+            title: "Cappy",
+            description: "",
+            price: "",
+            image: "cappy.jpeg"
+        },
+        170: {
+            title: "Fresh",
+            description: "",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        171: {
+            title: 'RedBull',
+            description: "",
+            price: "",
+            image: "Redbull.jpeg"
+        },
+        172: {
+            title: "Hell Energy",
+            description: "",
+            price: "",
+            image: "Hell.jpeg"
+        },
+        173: {
+            title: "Aquavita",
+            description: "",
+            price: "",
+            image: "Aquavita.jpeg"
+        },
+        174: {
+            title: 'Gülüstan',
+            description: "",
+            price: "",
+            image: "gulustan.jpeg"
+        },
+        175: {
+            title: "Gülüstan",
+            description: "",
+            price: "",
+            image: "gulustan.jpeg"
+        },
+        176: {
+            title: "Milla ayran ",
+            description: "",
+            price: "",
+            image: "milla.jpeg"
+        },
+        177: {
+            title: 'Coolmix',
+            description: "",
+            price: "",
+            image: "coolmix.jpeg"
+        },
+        178: {
+            title: "Zadezani  ",
+            description: "",
+            price: "",
+            image: "zadezani.jpeg"
+        },
+        179: {
+            title: "Maccofe",
+            description: " ",
+            price: "",
+            image: "maccofe.jpeg"
+        },
+        180: {
+            title: 'Mia limonad',
+            description: "",
+            price: "",
+            image: "mia05.jpeg"
+        },
+        181: {
+            title: "Mia limonad",
+            description: " ",
+            price: "",
+            image: "mia05.jpeg"
+        },
+        182: {
+            title: "Mia Limonad ",
+            description: "",
+            price: "",
+            image: "miaglass.jpeg"
+        },
+        183: {
+            title: ' Qızıl quyu ',
+            description: "",
+            price: "",
+            image: "qq05.jpeg"
+        },
+        184: {
+            title: "Tərəvəz kababı",
+            description: "",
+            price: "",
+            image: "terevez.jpeg"
+        },
+        185: {
+            title: "Ballı tort",
+            description: "Un , yumurta  ,  şəkər tozu  ,  ball  ,  soda  ,  süd  ,  sirkə  ,  yağ  ,  duz(az miqdarda) .",
+            price: "",
+            image: "balli.jpeg"
+        },
+        186: {
+            title: 'Spartak tortu',
+            description: "Un , yumurta  ,  şəkər tozu  ,  ball  ,  soda  ,  süd  ,  sirkə  ,  yağ  ,  duz(az miqdarda)  ,  kakao .",
+            price: "",
+            image: "spartak.jpeg"
+        },
+        187: {
+            title: "Napoleon tortu",
+            description: "",
+            price: "",
+            image: "napoleon.jpeg"
+        },
+        188: {
+            title: "Şirali dana ",
+            description:"",
+            price: "",
+            image: "kend_yumurtasi.jpeg"
+        },
+        189: {
+            title: 'Quzu xaşdama',
+            description: "",
+            price: "",
+            image: "sosiskam.jpeg"
+        },
+        190: {
+            title: "Ət dönər",
+            description: "",
+            price: "",
+            image: "etdoner.jpeg"
+        },
+        191: {
+            title: "Toyuq doner",
+            description: "",
+            price: "",
+            image: "toyuqdoner.jpeg"
+        },
+        192: {
+            title: 'Isgəndər dönər',
+            description: "Bu, sosiska hakkında açıklama metnidir.",
+            price: "",
+            image: ""
+        },
+        193: {
+            title: 'Pulovüstü dönər',
+            description: "",
+            price: "",
+            image: ""
+        },
+        194: {
+            title: 'Porsion dönər',
+            description: "",
+            price: "",
+            image: ""
+        },
+        195: {
+            title: 'Xiyar salatı',
+            description: "",
+            price: "",
+            image: ""
+        },
+        196: {
+            title: 'Gavalı salatı',
+            description: "",
+            price: "",
+            image: "gavali.jpeg"
+        },
+        197: {
+            title: 'Toyuq manastr',
+            description: "",
+            price: "",
+            image: "manastr.jpeg"
+        },
+        198: {
+            title: 'Qaymaqlı dana',
+            description: "",
+            price: "",
+            image: "qaymaqlidana.jpeg"
+        },
+        199: {
+            title: 'Limonlu toyuq',
+            description: "",
+            price: "",
+            image: "limonlutoyuq.jpeg"
+        },
+        200: {
+            title: 'Vişnəli ət qovurması',
+            description: "",
+            price: "",
+            image: "visneli.jpeg"
+        },
+        202: {
+            title: 'Burma paxlava',
+            description: "Un , yumurta  ,  şəkər tozu  ,  şit yağ  ,  maya  ,  vanil  ,  hil  ,  qoz  ,  şərbət .",
+            price: "",
+            image: ""
+        },
+        201: {
+            title: 'Farel',
+            description: "",
+            price: "",
+            image: "farel.jpeg"
+        },
+        203: {
+            title: 'Xaçapuri',
+            description: "",
+            price: "",
+            image: "xacapuri.jpeg"
+        },
+        204: {
+            title: 'Hacıoğlu salatı',
+            description: "Toyuq flesi  ,  qoz  ,  suxarik  ,  mayonez   ,  duz  ,  istiot.",
+            price: "",
+            image: "salatm.jpeg"
+        },
+        205: {
+            title: 'Çuğundur  salatı',
+            description: "Qoz  ,  mayonez  ,  çuğundur   ,  duz  ,  istiot",
+            price: "",
+            image: "cugundur.jpeg"
+        },
+        206: {
+            title: 'Lənkəran çayı',
+            description: "",
+            price: "",
+            image: "çay.jpeg"
+        },
+        207: {
+            title: 'Ət qutabı',
+            description: "",
+            price: "",
+            image: "qutab.jpeg"
+        },
+        208: {
+            title: 'Qarın qutabı',
+            description: "",
+            price: "",
+            image: "qutab.jpeg"
+        },
+        209: {
+            title: 'Göy qutabı',
+            description: "",
+            price: "",
+            image: "goyqutab.jpeg"
+        },
+        210: {
+            title: 'Dəvə qutabı',
+            description: "",
+            price: "",
+            image: "qutab.jpeg"
+        },
+        211: {
+            title: 'Bilinçik ətli',
+            description: "",
+            price: "",
+            image: "bilincik.jpeg"
+        },
+        212: {
+            title: 'Bilinçik kəsmikli',
+            description: "",
+            price: "",
+            image: "bilincik.jpeg"
+        },
+        213: {
+            title: 'Təndir çörəyi',
+            description: "",
+            price: "",
+            image: "Tendircorek.jpeg"
+        },
+        214: {
+            title: 'Kürə çörəyi',
+            description: "",
+            price: "",
+            image: "kurecorek.jpeg"
+        },
+        215: {
+            title: 'Qara çörəy',
+            description: "",
+            price: "",
+            image: "qaracorek.jpeg"
+        },
+        216: {
+            title: 'Lavaş',
+            description: "",
+            price: "",
+            image: "lavas.jpeg"
+        }
+
+
+
+
+
+
+
+
+
+
+
+    };
+
+    const data = itemData[itemId];
+    document.getElementById('modal-title').textContent = data.title;
+    document.getElementById('modal-description').textContent = data.description;
+    document.getElementById('modal-price').textContent = "Fiyat: " + data.price;
+
+    const modalImage = document.getElementById('modal-image');
+    modalImage.src = data.image;
+    modalImage.alt = data.title;
+
+    document.getElementById('myModal').style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById('myModal').style.display = "none";
+}
+
+// Modal dışına tıklamayı dinleyen kod
+document.getElementById('myModal').addEventListener('click', function(event) {
+    const modalContent = document.querySelector('.modal-content');
+    if (!modalContent.contains(event.target)) {
+        closeModal();
+    }
+});
+
+
+
+    </script>
+</body>
+</html>
